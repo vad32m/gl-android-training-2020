@@ -17,60 +17,70 @@ public class RockPaperScissorsGame {
         }
     }
 
-    private static Map<Integer, Weapon> WEAPONS_MAP = new HashMap<>();
+    private static Map<Integer, Weapon> NUMBERED_WEAPONS_MAP = new HashMap<>();
 
     static {
-        WEAPONS_MAP.put(0, Weapon.R);
-        WEAPONS_MAP.put(1, Weapon.P);
-        WEAPONS_MAP.put(2, Weapon.S);
+        NUMBERED_WEAPONS_MAP.put(0, Weapon.R);
+        NUMBERED_WEAPONS_MAP.put(1, Weapon.P);
+        NUMBERED_WEAPONS_MAP.put(2, Weapon.S);
     }
 
     public static void main(String[] args) {
         while (true) {
             System.out.println("Please, choose: rock (r) - paper (p) - scissors (s) or exit (e)");
 
-            Scanner consoleScanner = new Scanner(System.in);
-            String usersInput = consoleScanner.next();
+            Weapon usersWeapon = readUsersWeapon();
+            Weapon randomWeapon = getRandomWeapon();
 
-            if (usersInput.equals("e")) {
-                System.exit(0);
-            }
-            Weapon usersWeapon = Weapon.valueOf(usersInput.toUpperCase());
-            Weapon programsOption = WEAPONS_MAP.get(new Random().nextInt(3));
-
-            switch (usersWeapon) {
-                case R:
-                    System.out.println(String.format("You choose rock, I choose %s", programsOption.name));
-                    checkRock(programsOption);
-                    break;
-                case P:
-                    System.out.println(String.format("You choose paper, I choose %s", programsOption.name));
-                    checkPaper(programsOption);
-                    break;
-                case S:
-                    System.out.println(String.format("You choose scissors, I choose %s", programsOption.name));
-                    checkScissors(programsOption);
-                    break;
-            }
+            System.out.println(String.format("You choose %s, I choose %s", usersWeapon.name, randomWeapon.name));
+            fight(usersWeapon, randomWeapon);
         }
     }
 
-    private static void checkScissors(Weapon programsOption) {
-        switch (programsOption) {
-            case S:
-                System.out.println("The game is tied");
-                break;
+    private static Weapon readUsersWeapon() {
+        Scanner consoleScanner = new Scanner(System.in);
+        String usersInput = consoleScanner.next();
+        if (usersInput.equals("e")) {
+            System.out.println("Bye!");
+            System.exit(0);
+        }
+        return Weapon.valueOf(usersInput.toUpperCase());
+    }
+
+    private static Weapon getRandomWeapon() {
+        return NUMBERED_WEAPONS_MAP.get(new Random().nextInt(3));
+    }
+
+    private static void fight(Weapon usersWeapon, Weapon opponentWeapon) {
+        switch (usersWeapon) {
             case R:
-                System.out.println("I win: rock crushes scissors");
+                rockBeats(opponentWeapon);
                 break;
             case P:
-                System.out.println("You win: scissors cuts paper");
+                paperBeats(opponentWeapon);
+                break;
+            case S:
+                scissorsBeats(opponentWeapon);
                 break;
         }
     }
 
-    private static void checkPaper(Weapon programsOption) {
-        switch (programsOption) {
+    private static void rockBeats(Weapon opponentWeapon) {
+        switch (opponentWeapon) {
+            case R:
+                System.out.println("The game is tied");
+                break;
+            case P:
+                System.out.println("I win: paper covers rock");
+                break;
+            case S:
+                System.out.println("You win: rock crushes scissors");
+                break;
+        }
+    }
+
+    private static void paperBeats(Weapon opponentWeapon) {
+        switch (opponentWeapon) {
             case P:
                 System.out.println("The game is tied");
                 break;
@@ -83,16 +93,16 @@ public class RockPaperScissorsGame {
         }
     }
 
-    private static void checkRock(Weapon programsOption) {
-        switch (programsOption) {
-            case R:
+    private static void scissorsBeats(Weapon opponentWeapon) {
+        switch (opponentWeapon) {
+            case S:
                 System.out.println("The game is tied");
                 break;
-            case P:
-                System.out.println("I win: paper covers rock");
+            case R:
+                System.out.println("I win: rock crushes scissors");
                 break;
-            case S:
-                System.out.println("You win: rock crushes scissors");
+            case P:
+                System.out.println("You win: scissors cuts paper");
                 break;
         }
     }
