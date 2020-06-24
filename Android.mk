@@ -6,9 +6,18 @@ LOCAL_PACKAGE_NAME := FloatExchangeService
 
 LOCAL_SRC_FILES := \
 	$(call all-java-files-under, java) \
-	$(call all-Iaidl-files-under, aidl)
+	$(call all-Iaidl-files-under, aidl) \
+
+LOCAL_USE_APPT2 := true
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
+
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+	android-support-v7-appcompat \
+	android-support-constraint-layout \
+
+LOCAL_STATIC_JAVA_LIBRARIES += \
+	android-support-constraint-layout-solver \
 
 LOCAL_SDK_VERSION := 28
 
