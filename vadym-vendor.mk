@@ -1,1 +1,2 @@
-PRODUCT_PACKAGES += FloatExchangeService
+PRODUCT_PACKAGES += FloatExchangeService \
+	FloatWriter
