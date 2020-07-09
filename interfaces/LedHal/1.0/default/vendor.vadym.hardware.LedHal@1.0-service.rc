@@ -1,0 +1,5 @@
+service vendor.vadym.hardware.LedHal-1-0 /system/vendor/bin/hw/vendor.vadym.hardware.LedHal@1.0-service
+    interface vendor.vadym.hardware.LedHal@1.0::ILedHal default
+    class hal
+    user system
+    group system

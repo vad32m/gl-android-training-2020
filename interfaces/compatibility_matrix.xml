@@ -1,0 +1,10 @@
+<compatibility-matrix version="1.0" type="device">
+    <hal format="hidl" optional="false">
+        <name>vendor.vadym.hardware.LedHal</name>
+        <version>1.0</version>
+        <interface>
+            <name>ILedHal</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+</compatibility-matrix>

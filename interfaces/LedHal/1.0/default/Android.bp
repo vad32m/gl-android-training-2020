@@ -1,0 +1,18 @@
+cc_binary {
+    name:"vendor.vadym.hardware.LedHal@1.0-service",
+    init_rc: ["vendor.vadym.hardware.LedHal@1.0-service.rc"],
+    defaults: ["hidl_defaults"],
+    relative_install_path: "hw",
+    vendor: true,
+    srcs: [
+	    "LedHal.cpp",
+	    "service.cpp"
+    ],
+    shared_libs: [
+        "libhidlbase",
+        "libhidltransport",
+        "libutils",
+        "liblog",
+        "vendor.vadym.hardware.LedHal@1.0",
+    ],
+}

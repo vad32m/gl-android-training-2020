@@ -1,0 +1,13 @@
+hidl_interface {
+    name: "vendor.vadym.hardware.LedHal@1.0",
+    root: "vendor.vadym.hardware",
+    srcs: [
+        "ILedHal.hal",
+    ],
+    interfaces: [
+        "android.hidl.base@1.0",
+    ],
+    gen_java: true,
+    gen_java_constants: true,
+    
+}

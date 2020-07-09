@@ -1,0 +1,5 @@
+package vendor.vadym.hardware.LedHal@1.0;
+
+interface ILedHal {
+    setFloat(float var) generates (bool res);
+};
