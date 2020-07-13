@@ -1,0 +1,2 @@
+allow platform_app hal_ledhal_hwservice:hwservice_manager { find };
+allow platform_app hal_ledhal_default:binder { call };
